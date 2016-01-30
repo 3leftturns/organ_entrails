@@ -50,16 +50,18 @@ def fightZombies(zombies):
     print(str(zombies) + " zombies stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
     attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
     if (str.upper(attack) != "A"):
-        hit = zombies * hitMultiplier[random.randrange(0, len(hitMultiplier))]
+        hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
         print(str(hit))
-        life = life - hit
+        if hit > 0:
+            life = life - hit
         if (hit == 0):
             print("That was a lucky miss. Next time you should attack!")
         else:
-            print(str(zombies) + "zombies ravaged you. Your life health is now" + str(life))
+            print(str(zombies) + " zombies ravaged you. Your life health is now " + str(life))
     else:
-        hit = zombies-1 * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
-        life = life - hit
+        hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
+        if hit > 0:
+            life = life - hit
         print (str(zombies) + " attack you.\n" "Life health is now " + str(life))
 
 
@@ -94,6 +96,7 @@ def lootHouse():
             for item in inventory:
                 if(inventory[item] > 0):
                     print (item + ": " + str(inventory[item]))
+            print("\n")
 
 def lootBodies():
     loot = raw_input("Would you like to loot the bodies? (Y/N)\n")
@@ -159,7 +162,7 @@ def changeWeapon():
     w = myWeapons.pop(equip)
     myWeapons.insert(0, w)
 
-    print myWeapons[0] + "is equipped.\n"
+    print myWeapons[0] + " is equipped.\n"
 
 
 print (welcome)
@@ -187,7 +190,8 @@ while (life > 0):
     action = raw_input("What would you like to do now?\n1)Find more zombies\n2)Loot more houses\n3)Leave the city\n4)Check inventory\n5)Change Weapon\n\n")
     if (action == "1"):
         fightZombies(random.randrange(0, 10))
-        lootBodies()
+        if (life > 0):
+            lootBodies()
     elif (action == "2"):
         lootHouse()
     elif (action == "3"):
