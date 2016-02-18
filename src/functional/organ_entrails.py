@@ -47,17 +47,20 @@ youAreHere = 0
 
 def fightZombies(zombies):
     global life
-    print(str(zombies) + " zombies stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
-    attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
-    if (str.upper(attack) != "A"):
-        hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
-        print(str(hit))
-        if hit > 0:
-            life = life - hit
-        if (hit == 0):
-            print("That was a lucky miss. Next time you should attack!")
-        else:
-            print(str(zombies) + " zombies ravaged you. Your life health is now " + str(life))
+    if zombies != 0:
+        print(str(zombies) + " zombies stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
+        attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
+        if (str.upper(attack) != "A"):
+            hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
+            print(str(hit))
+            if hit > 0:
+                life = life - hit
+            if (hit == 0):
+                print("That was a lucky miss. Next time you should attack!")
+            else:
+                print(str(zombies) + " zombies ravaged you. Your life health is now " + str(life))
+    elif zombies == 0:
+         print ("The zombies have fled because of your presence")
     else:
         hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
         if hit > 0:
@@ -189,8 +192,8 @@ while (life > 0):
     print("Life: " + str(life))
     action = raw_input("What would you like to do now?\n1)Find more zombies\n2)Loot more houses\n3)Leave the city\n4)Check inventory\n5)Change Weapon\n\n")
     if (action == "1"):
-        fightZombies(random.randrange(0, 10))
-        if (life > 0):
+        fightZombies(random.randrange(0,10))
+        if (life > 0) and zombies !=0:
             lootBodies()
     elif (action == "2"):
         lootHouse()
