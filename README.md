@@ -21,14 +21,50 @@ This will download the code to your current folder.
 
 type
 
-cd src/functional
+cd src/game
 
-to access the full game. The procedural folder contains only the tutorial and is meant to show the benefits of functional programming over procedural.
+to access the game.
 
 then type
 
 python organ_entrails.py
 
 and the game will run. Follow the on screen helps to play. Send any feedback to github@andrewtjohnson.me
+
+
+###Updating the repository
+
+You will need to fork this repository to your own repo. To do this, click the fork button on the right, and choose your own repository.
+
+Then use git clone to pull down the fork to your working directory.
+
+git clone <the url of your fork>
+
+Open the file in a text editor (notepad for windows is fine, Notepad++ is a little better; textedit for Mac, or Sublime text is a good choice too.)
+* Using a document editor like MS Word will NOT work *
+
+Test your changes by running the python file using
+
+python organ_entrails.py
+
+as a terminal command in the console. Once it works, you need to commit the changes to git.
+
+First, commit the changes locally:
+
+git status
+(this will tell you the status of the changes)
+
+git add -A
+(this adds all changed files to the repo)
+
+git status
+(again to verify your changes are now staged for commit)
+
+git commit -m 'put a message between the quotes here with your changes'
+(commits to this repo will require a commit message)
+
+At this point everything is up to date locally. Now we need to push it to the cloud:
+
+git push
 
 *The current release of this code is in Alpha and has known bugs and is not optimized.*
