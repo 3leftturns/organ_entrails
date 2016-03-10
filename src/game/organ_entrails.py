@@ -60,7 +60,7 @@ def fightZombies(zombies):
             else:
                 print(str(zombies) + " zombies ravaged you. Your life health is now " + str(life))
     elif zombies == 0:
-         print ("The zombies have fled because of your presence")
+         print ("But Nobody Came!")
     else:
         hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]]) - zombies
         if hit > 0:
